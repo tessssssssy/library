@@ -15,13 +15,22 @@
     <h1>Library</h1>
     <button id="addBook">Add Book</button>
     <form class="hidden">
-      <input type="text" name="title" id="title" />title
-      <input type="text" name="author" id="author" />author
-      <input type="text" name="pages" id="pages" />pages
-      <input type="text" name="read" id="read" />read?
+      title: <input type="text" name="title" id="title" /> author:
+      <input type="text" name="author" id="author" /> pages:
+      <input type="text" name="pages" id="pages" /> read?
+      <input type="text" name="read" id="read" />
     </form>
     <button class="hidden" id="submit">submit</button>
-    <ul id="bookList"></ul>
+    <ul></ul>
+    <table id="bookList">
+      <tr>
+        <th>Title</th>
+        <th>Author</th>
+        <th>Pages</th>
+        <th>Read</th>
+      </tr>
+    </table>
+
     <script src="app.js"></script>
   </body>
 </html>

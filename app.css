@@ -1,3 +1,11 @@
+body {
+  font-family: sans-serif;
+}
+
 .hidden {
   display: none;
+}
+
+input {
+  display: block;
 }

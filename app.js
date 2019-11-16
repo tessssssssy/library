@@ -1,6 +1,6 @@
 let myLibrary = [];
 let addBook = document.querySelector("#addBook");
-var ul = document.querySelector("ul");
+var table = document.querySelector("table");
 var form = document.querySelector("form");
 var titleInput = document.querySelector("#title");
 var authorInput = document.querySelector("#author");
@@ -46,17 +46,65 @@ submit.addEventListener("click", function() {
   render();
 });
 
+var rows = document.querySelectorAll("tr");
+console.log(rows);
+function clearList() {
+  for (var i = 1; i < rows.length; i++) {
+    rows[i].parentNode.removeChild(rows[i]);
+  }
+}
+
 //render list of books
 function render() {
-  var lis = document.querySelectorAll("li");
+  console.log(table.children);
+  var rows = document.querySelectorAll("tr");
   //remove prev list (otherwise it will add new list to prev list)
-  for (var i = 0; i < lis.length; i++) {
-    ul.removeChild(lis[i]);
+  //starts index 1 so doesn't remove header row
+  for (var i = 1; i < rows.length; i++) {
+    rows[i].parentNode.removeChild(rows[i]);
   }
   //render new list
   for (var i = 0; i < myLibrary.length; i++) {
-    var li = document.createElement("li");
-    li.textContent = myLibrary[i]["title"];
-    ul.appendChild(li);
+    var tr = document.createElement("tr");
+    //tr.setAttribute("data-index", `${i}`);
+    //tr.textContent = myLibrary[i]["title"];
+    tr.innerHTML = `<td>${myLibrary[i]["title"]}
+                    <td>${myLibrary[i]["author"]}
+                    <td>${myLibrary[i]["pages"]}
+                    <td>${myLibrary[i]["read"]}
+                    <td><button class="remove">remove</button>
+    `;
+    table.appendChild(tr);
+    console.log(rows);
+    //reassign rows to include new row
+    rows = document.querySelectorAll("tr");
+
+    //delete button - works I think
+    var btn = document.getElementsByClassName("remove");
+    for (var i = 0; i < btn.length; i++) {
+      btn[i].addEventListener(
+        "click",
+        function(e) {
+          e.target.parentNode.parentNode.parentNode.removeChild(
+            e.target.parentNode.parentNode
+          );
+        },
+        false
+      );
+    }
   }
 }
+
+/*var btn = document.querySelector(`.remove`);
+btn.addEventListener("click", function() {
+  btn.parentNode.parentNode.remove();
+});*/
+
+/*var removeButtons = document.querySelector(".remove");
+    for (var i = 0; i < removeButtons.length; i++) {
+      removeButtons[i].addEventListener("click", function(event) {
+        var button = event.target;
+        button.parentNode.parentNode.removeChild(button.parentNode);
+      });
+    }*/
+//tr.children[4].style.background = "pink";
